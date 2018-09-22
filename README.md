@@ -8,7 +8,7 @@ A tweak that prevents you from killing the app that is currently playing.
 
 ## Download
 * Add my [repo](https://github.com/Karimo299/repo)
-* You can also download the deb from [here](./Packages)
+* You can also download the deb from [here](./packages)
 
 ## Credits
 
