@@ -1,0 +1,9 @@
+Package: com.karimo299.dontkillmymusic
+Name: DontKillMyMusic
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Prevents you from accidentally killing now playing music.
+Maintainer: Karimo299
+Author: Karimo299
+Section: Tweaks
