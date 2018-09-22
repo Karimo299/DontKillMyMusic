@@ -53,7 +53,6 @@ int playing = 0;
 //Here I check if there is anything playing and compare the bundleId
 %hook SBFluidSwitcherItemContainer
 -(void)layoutSubviews {
-	NSLog(@"%d", enabled);
 	%orig;
 	if (enabled) {
 		SBAppLayout* lay = MSHookIvar <SBAppLayout*> (self,"_appLayout");
