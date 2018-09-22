@@ -16,7 +16,7 @@
 }
 		//Github source code button
 	- (void) git {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://github.com/karimo299"]];
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://github.com/Karimo299/DontKillMyMusic"]];
 	}
 		//Twitter button
 	- (void) tweet {
