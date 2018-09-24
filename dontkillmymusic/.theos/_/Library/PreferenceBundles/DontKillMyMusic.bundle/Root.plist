@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+					<key>cell</key>
+					<string>PSSwitchCell</string>
+					<key>default</key>
+					<true/>
+					<key>defaults</key>
+					<string>com.karimo299.dontkillmymusic</string>
+					<key>key</key>
+					<string>isEnabled</string>
+					<key>label</key>
+					<string>Enable</string>
+				</dict>
+				<dict>
+					<key>cell</key>
+					<string>PSButtonCell</string>
+					<key>label</key>
+					<string>Respring</string>
+					<key>action</key>
+					<string>respring</string>
+				</dict>
+				<dict>
+					<key>cell</key>
+					<string>PSGroupCell</string>
+					<key>label</key>
+					<string>Credits</string>
+				</dict>
+				<dict>
+					<key>cell</key>
+					<string>PSButtonCell</string>
+					<key>label</key>
+					<string>Karimo299 (Twitter)</string>
+					<key>action</key>
+					<string>tweet</string>
+				</dict>
+				<dict>
+					<key>cell</key>
+					<string>PSButtonCell</string>
+					<key>label</key>
+					<string>Karimo299 (Reddit)</string>
+					<key>action</key>
+					<string>reddit</string>
+				</dict>
+				<dict>
+					<key>cell</key>
+					<string>PSGroupCell</string>
+					<key>label</key>
+					<string>Source code</string>
+				</dict>
+				<dict>
+					<key>cell</key>
+					<string>PSButtonCell</string>
+					<key>label</key>
+					<string>Github</string>
+					<key>action</key>
+					<string>git</string>
+				</dict>
+	</array>
+	<key>title</key>
+	<string>DontKillMyMusic</string>
+</dict>
+</plist>

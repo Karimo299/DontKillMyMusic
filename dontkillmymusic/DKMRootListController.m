@@ -22,6 +22,11 @@
 	- (void) tweet {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://twitter.com/karimo299"]];
 	}
+
+	- (void) tweetHaste {
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://twitter.com/hasteDesigns"]];
+	}
+
 		//Reddit button
 	- (void)reddit {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://reddit.com/user/Karimo299"]];

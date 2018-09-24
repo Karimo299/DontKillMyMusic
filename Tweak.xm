@@ -59,7 +59,8 @@ int playing = 0;
 		[lay getAppId];
 		if ([swipeAppId isEqual:playingAppId]) {
 			MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize = CGSizeMake(MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize.width,0);
-		}
+		} else if (playing && [swipeAppId isEqual:@"com.apple.springboard"]) // Support for SBCard by julioverne to prevent the home card to kill anything
+		MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize = CGSizeMake(MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize.width,0);
 	}
 }
 %end
