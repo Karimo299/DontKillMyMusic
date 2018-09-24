@@ -8,7 +8,7 @@
 					<key>cell</key>
 					<string>PSSwitchCell</string>
 					<key>default</key>
-					<true/>
+					<false/>
 					<key>defaults</key>
 					<string>com.karimo299.dontkillmymusic</string>
 					<key>key</key>
