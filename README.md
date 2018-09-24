@@ -3,6 +3,10 @@
 A tweak that prevents you from killing the app that is currently playing. 
 
 ## Changlog
+* V1.0.1 (Current)
+  - Enable Bug fix
+  - Support for SBCard by julioverne
+  - Added Icon by [@hasteDesigns](https://twitter.com/hasteDesigns)
 * V1.0.0  
   - Inital Relase
 
@@ -12,7 +16,8 @@ A tweak that prevents you from killing the app that is currently playing.
 
 ## Credits
 
-Karimo299
+[Karimo299](https://twitter.com/karimo299)
+[hasteDesigns](https://twitter.com/hasteDesigns)
 
 ## Requests
 
