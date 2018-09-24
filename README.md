@@ -20,7 +20,3 @@ A tweak that prevents you from killing the app that is currently playing.
 
 * [Karimo299](https://twitter.com/karimo299)
 * [hasteDesigns](https://twitter.com/hasteDesigns)
-
-## Requests
-
-If your intersted in submitting an icon for the tweak, DM me on Twitter [@Karimo299](https://twitter.com/karimo299). Thanks :)
