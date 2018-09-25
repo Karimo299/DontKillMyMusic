@@ -3,7 +3,14 @@
 A tweak that prevents you from killing the app that is currently playing. 
 
 ## Changlog
-* V1.0.1 (Current)
+* V1.0.2-1 (Current)
+  - Added toggle for EasySwitcherX fix
+  
+* V1.0.2
+  - Support for EasySwitcherX
+  - Code Cleanup
+  
+* V1.0.1
   - Enable Bug fix
   - Support for SBCard by julioverne
   - Added Icon by [@hasteDesigns](https://twitter.com/hasteDesigns)
