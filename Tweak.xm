@@ -1,6 +1,6 @@
 //This imports whatever classes I need
 #import <UIKit/UIScrollView.h>
-@class SBApplication, SBAppLayout, UILongPressGestureRecognizer;
+@class SBApplication, SBAppLayout, UILongPressGestureRecognizer, UIScrollView;
 
 @interface SBMediaController : NSObject
 - (BOOL)isPlaying;
@@ -16,6 +16,7 @@ NSDictionary *values = [[NSUserDefaults standardUserDefaults] persistentDomainFo
 
 // Sets a bool if enabled switch is on
 BOOL enabled = [[values valueForKey:@"isEnabled"] isEqual:@1];
+BOOL easyFix = [[values valueForKey:@"EasyFix"] isEqual:@1];
 
 //Gloabal variables I need
 NSString *playingAppId;
@@ -59,7 +60,18 @@ int playing = 0;
 		[lay getAppId];
 		if ([swipeAppId isEqual:playingAppId]) {
 			MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize = CGSizeMake(MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize.width,0);
-		} else if (playing && [swipeAppId isEqual:@"com.apple.springboard"]) // Support for SBCard by julioverne to prevent the home card to kill anything
+		}
+		// Support for SBCard by julioverne to prevent the home card to kill anything
+		else if (playing && [swipeAppId isEqual:@"com.apple.springboard"]) {
+			MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize = CGSizeMake(MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize.width,0);
+		}
+	}
+}
+
+-(void)scrollViewDidScroll:(id)arg1 {
+	%orig;
+	// This disables swiping down so EasySwitcherX by sparkdev_ will not run if music is playing
+	if (easyFix && playing && MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentOffset.y < 0) {
 		MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize = CGSizeMake(MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize.width,0);
 	}
 }
