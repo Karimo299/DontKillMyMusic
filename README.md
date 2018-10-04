@@ -3,7 +3,8 @@
 A tweak that prevents you from killing the app that is currently playing.
 
 ## How does it work?
-
+  First, I hook into `SBMediaController` to check if there is any app that is playing. In that class there is a method called `_mediaRemoteNowPlayingApplicationIsPlayingDidChange` which is perfect because it gets called evertime an app starts/ends playing. In that method I store `isPlaying` &  `bundleIdentifier`.
+  
 ## Changlog
 
 * V1.0.3-2 (Current)
