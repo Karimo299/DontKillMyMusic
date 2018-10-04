@@ -3,7 +3,13 @@
 A tweak that prevents you from killing the app that is currently playing.
 
 ## How does it work?
-  First, I hook into `SBMediaController` to check if there is any app that is playing. In that class there is a method called `_mediaRemoteNowPlayingApplicationIsPlayingDidChange` which is perfect because it gets called evertime an app starts/ends playing. In that method I store `isPlaying` &  `bundleIdentifier`.
+  First, I hooked into `SBMediaController` to check if there is any app that is playing. In that class there is a method called `_mediaRemoteNowPlayingApplicationIsPlayingDidChange` which is perfect because it gets called evertime an app starts/ends playing. In that method I store `isPlaying` into `playing` &  `bundleIdentifier` into `playingAppId`.
+  
+  Then, I hooked into `SBAppLayout`, which is the class used for all the appswithcer cards. Unlike `SBMediaController` there isn't `bundleIdentifier` variable lying around, but there is an NSDictionary called `rolesToLayoutItemsMap` which contains the bundleId of the switcher cards. so I made created a method  called `getAppId` to set the switcher card's bundleId to `swipeAppId`.
+  
+  Finally, I hooked into `SBFluidSwitcherItemContainer`, which basically controls the entire appswitcher. In `layoutSubviews` I called `getAppId` then compared `playingAppId` and `swipeAppId` and if it is true, set the width of the UIScrollView of the app to 0, so you wouldn't be able to swipe it.
+  
+  NOTE: I didn't cover extra things, like other tweak support or app lock for other apps.
   
 ## Changlog
 
