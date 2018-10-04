@@ -1,15 +1,27 @@
 # DontKillMyMusic
 
-A tweak that prevents you from killing the app that is currently playing. 
+A tweak that prevents you from killing the app that is currently playing.
+
+## How does it work?
 
 ## Changlog
-* V1.0.2-1 (Current)
+
+* V1.0.3-2 (Current)
+  - Fixed bug where you cant enter an app when it is tapped if lockapp isnt enabled.
+
+* V1.0.3-1
+  - Fixed typo in the settings section.
+
+* V1.0.3
+  - Added the ability to lock other apps if you wish so.
+
+* V1.0.2-1
   - Added toggle for EasySwitcherX fix
-  
+
 * V1.0.2
   - Support for EasySwitcherX
   - Code Cleanup
-  
+
 * V1.0.1
   - Enable Bug fix
   - Support for SBCard by julioverne
