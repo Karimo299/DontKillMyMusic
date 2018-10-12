@@ -21,8 +21,7 @@ NSDictionary *values = [[NSUserDefaults standardUserDefaults] persistentDomainFo
 // Sets a bool for toggles in settings app
 BOOL enabled = [[values valueForKey:@"isEnabled"] isEqual:@1];
 BOOL easyFix = [[values valueForKey:@"EasyFix"] isEqual:@1];
-BOOL appLock = [[values valueForKey:@"AppLock"] isEqual:@1];
-BOOL higlight = [[values valueForKey:@"higlight"] isEqual:@1];
+BOOL appLock = [[values valueForKey:@"AppLock"] isEqual:@1];;
 
 //Gloabal variables I need
 NSMutableArray *otherApps = [[NSMutableArray alloc]init];
