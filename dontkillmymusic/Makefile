@@ -5,6 +5,8 @@ DontKillMyMusic_FILES = DKMRootListController.m
 DontKillMyMusic_INSTALL_PATH = /Library/PreferenceBundles
 DontKillMyMusic_FRAMEWORKS = UIKit
 DontKillMyMusic_PRIVATE_FRAMEWORKS = Preferences
+DontKillMyMusic_LIBRARIES = applist
+
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

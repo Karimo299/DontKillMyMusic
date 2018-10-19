@@ -1,5 +1,6 @@
 // This is the implementation file for the settings Preferences
 #include "DKMRootListController.h"
+#import "SparkAppListTableViewController.h"
 
 // Must include for respring button
 #include <spawn.h>
@@ -14,6 +15,7 @@
 
 	return _specifiers;
 }
+
 		//Github source code button
 	- (void) git {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://github.com/Karimo299/DontKillMyMusic"]];
