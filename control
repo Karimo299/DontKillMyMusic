@@ -1,6 +1,6 @@
 Package: com.karimo299.dontkillmymusic
 Name: DontKillMyMusic
-Depends: mobilesubstrate, PreferencesLoader, AppList
+Depends: mobilesubstrate, PreferenceLoader, AppList
 Version: 1.0.4-2
 Architecture: iphoneos-arm
 Description: A tweak that prevents you from killing the app that is currently playing, and other apps if you wish so.
