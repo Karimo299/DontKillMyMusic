@@ -2,8 +2,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = DontKillMyMusic
 DontKillMyMusic_FILES = Tweak.xm
-DontKillMyMusic_LIBRARIES = applist
-
+DontKillMyMusic_LIBRARIES = sparkapplist
 include $(THEOS_MAKE_PATH)/tweak.mk
 
 after-install::
