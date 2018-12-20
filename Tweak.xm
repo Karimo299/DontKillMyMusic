@@ -44,12 +44,13 @@ static void loadPrefs() {
 NSString *nowPlayingAppID;
 - (void)_mediaRemoteNowPlayingApplicationIsPlayingDidChange:(id)arg1 {
 	%orig;
-	if (!nowPlayingAppID) {
-		nowPlayingAppID = [[self nowPlayingApplication] bundleIdentifier];
-	}
 	playing = [self isPlaying];
-	if (playing && ![SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"DisabledApps" containBundleIdentifier:nowPlayingAppID]) {
-	[appList addObject:nowPlayingAppID];
+	if (playing && ![SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"DisabledApps" containBundleIdentifier:nowPlayingAppID] && nowPlayingAppID) {
+	nowPlayingAppID = [[self nowPlayingApplication] bundleIdentifier];
+		NSLog(@"%@", nowPlayingAppID);
+		if (![appList containsObject:nowPlayingAppID]) {
+			[appList addObject:nowPlayingAppID];
+		}
 	} else {
 	[appList removeObject:nowPlayingAppID];	
 	nowPlayingAppID = nil;
@@ -81,7 +82,7 @@ NSString *nowPlayingAppID;
 	[appList removeObject:shouldKill];
 	if (nowPlayingAppID && ![appList containsObject:nowPlayingAppID] && ![shouldKill isEqual:nowPlayingAppID]) {
 	[appList addObject:nowPlayingAppID];
-	} else if (appLock && [SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"LockedApps" containBundleIdentifier:swipeAppId] && ![swipeAppId isEqual:shouldKill]) {
+	} else if (appLock && [SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"LockedApps" containBundleIdentifier:swipeAppId] && ![shouldKill isEqual:swipeAppId]) {
 			[appList addObject:swipeAppId];
 	}
 	%orig;
@@ -116,9 +117,14 @@ NSString *nowPlayingAppID;
 			lay = MSHookIvar <SBAppLayout*> (self,"_appLayout");
 			[lay getAppId];
 			if (![appList containsObject:swipeAppId] && ![SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"DisabledApps" containBundleIdentifier:swipeAppId]) {
+				if ([SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"LockedApps" containBundleIdentifier:swipeAppId]) {
+					shouldKill = nil;
+				}
 				[appList addObject:swipeAppId];
 			} else { 
-				shouldKill = swipeAppId;
+				if ([SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"LockedApps" containBundleIdentifier:swipeAppId]) {
+					shouldKill = swipeAppId;
+				}
 				[appList removeObject:swipeAppId];
 			}
 		}
