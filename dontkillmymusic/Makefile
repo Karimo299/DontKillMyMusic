@@ -5,7 +5,7 @@ DontKillMyMusic_FILES = DKMRootListController.m
 DontKillMyMusic_INSTALL_PATH = /Library/PreferenceBundles
 DontKillMyMusic_FRAMEWORKS = UIKit
 DontKillMyMusic_PRIVATE_FRAMEWORKS = Preferences
-DontKillMyMusic_LIBRARIES = sparkapplist
+DontKillMyMusic_LIBRARIES = applist
 DontKillMyMusic_EXTRA_FRAMEWORKS = Cephei CepheiPrefs
 
 include $(THEOS_MAKE_PATH)/bundle.mk

@@ -1,100 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>items</key>
-	<array>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Main</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<false/>
-			<key>PostNotification</key>
-			<string>com.karimo299.dontkillmymusic/prefChanged</string>
-			<key>defaults</key>
-			<string>com.karimo299.dontkillmymusic</string>
-			<key>key</key>
-			<string>isEnabled</string>
-			<key>label</key>
-			<string>Enable</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Extra</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<true/>
-			<key>PostNotification</key>
-			<string>com.karimo299.dontkillmymusic/prefChanged</string>
-			<key>defaults</key>
-			<string>com.karimo299.dontkillmymusic</string>
-			<key>key</key>
-			<string>AppLock</string>
-			<key>label</key>
-			<string>Enable Applock</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<false/>
-			<key>PostNotification</key>
-			<string>com.karimo299.dontkillmymusic/prefChanged</string>
-			<key>defaults</key>
-			<string>com.karimo299.dontkillmymusic</string>
-			<key>key</key>
-			<string>EasyFix</string>
-			<key>label</key>
-			<string>EasySwitcherX Fix</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSLinkListCell</string>
-			<key>PostNotification</key>
-			<string>com.karimo299.dontkillmymusic/prefChanged</string>
-			<key>defaults</key>
-			<string>com.karimo299.dontkillmymusic</string>
-			<key>label</key>
-			<string>Default Locked Apps</string>
-			<key>DefaultValue</key>
-			<string>0 apps</string>
-			<key>action</key>
-			<string>selectLockedApps</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSLinkListCell</string>
-			<key>PostNotification</key>
-			<string>com.karimo299.dontkillmymusic/prefChanged</string>
-			<key>defaults</key>
-			<string>com.karimo299.dontkillmymusic</string>
-			<key>label</key>
-			<string>Blacklisted Apps</string>
-			<key>DefaultValue</key>
-			<string>0 apps</string>
-			<key>action</key>
-			<string>selectDisabledApps</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>label</key>
-			<string>Respring</string>
-			<key>action</key>
-			<string>respring</string>
-		</dict>
-		<dict>
+	<dict>
+		<key>items</key>
+		<array>
+			<dict>
+				<key>cell</key>
+				<string>PSGroupCell</string>
+				<key>label</key>
+				<string>Main</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSSwitchCell</string>
+				<key>default</key>
+				<true/>
+				<key>PostNotification</key>
+				<string>com.karimo299.dontkillmymusic/prefChanged</string>
+				<key>defaults</key>
+				<string>com.karimo299.dontkillmymusic</string>
+				<key>key</key>
+				<string>isEnabled</string>
+				<key>label</key>
+				<string>Enable</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSGroupCell</string>
+				<key>label</key>
+				<string>Extra</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSSwitchCell</string>
+				<key>default</key>
+				<true/>
+				<key>PostNotification</key>
+				<string>com.karimo299.dontkillmymusic/prefChanged</string>
+				<key>defaults</key>
+				<string>com.karimo299.dontkillmymusic</string>
+				<key>key</key>
+				<string>AppLock</string>
+				<key>label</key>
+				<string>Enable Applock</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSSwitchCell</string>
+				<key>default</key>
+				<false/>
+				<key>PostNotification</key>
+				<string>com.karimo299.dontkillmymusic/prefChanged</string>
+				<key>defaults</key>
+				<string>com.karimo299.dontkillmymusic</string>
+				<key>key</key>
+				<string>EasyFix</string>
+				<key>label</key>
+				<string>EasySwitcherX Fix</string>
+			</dict>
+
+			<dict>
+				<key>bundle</key>
+				<string>AppList</string>
+				<key>ALNavigationTitle</key>
+				<string>Default Locked Apps</string>
+				<key>enabled</key>
+				<true/>
+				<key>cell</key>
+				<string>PSLinkCell</string>
+				<key>isController</key>
+				<true/>
+				<key>label</key>
+				<string>Default Locked Apps</string>
+				<key>ALSettingsPath</key>
+				<string>/var/mobile/Library/Preferences/com.karimo299.dontkillmymusic.plist</string>
+				<key>ALSettingsKeyPrefix</key>
+				<string>LockedApps-</string>
+				<key>PostNotification</key>
+				<string>com.karimo299.dontkillmymusic/prefChanged</string>
+			</dict>
+			<dict>
+				<key>bundle</key>
+				<string>AppList</string>
+				<key>ALNavigationTitle</key>
+				<string>Blacklisted Apps</string>
+				<key>enabled</key>
+				<true/>
+				<key>cell</key>
+				<string>PSLinkCell</string>
+				<key>isController</key>
+				<true/>
+				<key>label</key>
+				<string>Blacklisted Apps</string>
+				<key>ALSettingsPath</key>
+				<string>/var/mobile/Library/Preferences/com.karimo299.dontkillmymusic.plist</string>
+				<key>ALSettingsKeyPrefix</key>
+				<string>DisabledApps-</string>
+				<key>PostNotification</key>
+				<string>com.karimo299.dontkillmymusic/prefChanged</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSGroupCell</string>
+				<key>label</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSButtonCell</string>
+				<key>label</key>
+				<string>Reset All Settings to Defualt</string>
+				<key>action</key>
+				<string>reset</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSButtonCell</string>
+				<key>label</key>
+				<string>Respring</string>
+				<key>action</key>
+				<string>respring</string>
+			</dict>
+			<dict>
 				<key>cell</key>
 				<string>PSGroupCell</string>
 				<key>label</key>
@@ -130,30 +157,30 @@
 				<key>label</key>
 				<string>HasteDesigns</string>
 				<key>user</key>
-				<string>hastedesigns</string>
+				<string>HasteDesigns</string>
 				<key>action</key>
-				<string>hasteTweet</string>
+				<string>tweetHaste</string>
 			</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Source code</string>
-			<key>footerText</key>
-			<string>Thanks for downloading, enjoy :)</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>icon</key>
-		  <string>github.png</string>
-			<key>label</key>
-			<string>Github</string>
-			<key>action</key>
-			<string>git</string>
-		</dict>
-	</array>
-	<key>title</key>
-	<string>DontKillMyMusic</string>
-</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSGroupCell</string>
+				<key>label</key>
+				<string>Source code</string>
+				<key>footerText</key>
+				<string>Thanks for downloading, enjoy :)</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSButtonCell</string>
+				<key>icon</key>
+				<string>github.png</string>
+				<key>label</key>
+				<string>Github</string>
+				<key>action</key>
+				<string>git</string>
+			</dict>
+		</array>
+		<key>title</key>
+		<string>DontKillMyMusic</string>
+	</dict>
 </plist>

@@ -1,6 +1,5 @@
 //This imports whatever classes I need
 #import <UIKit/UIScrollView.h>
-#import "SparkAppList.h"
 
 @class SBApplication, SBAppLayout, UILongPressGestureRecognizer, UIScrollView;
 
@@ -19,6 +18,7 @@
 
 
 //Gloabal variables I need
+static NSUserDefaults *prefs;
 NSMutableArray *appList = [[NSMutableArray alloc]init];
 NSString *swipeAppId;
 NSString *shouldKill;
@@ -30,8 +30,8 @@ SBAppLayout *lay;
 
 //Loads the Preferences settings
 static void loadPrefs() {
-	static NSUserDefaults *prefs = [[NSUserDefaults alloc] initWithSuiteName:@"com.karimo299.dontkillmymusic"];
-	enabled = [prefs objectForKey:@"isEnabled"] ? [[prefs objectForKey:@"isEnabled"] boolValue] : NO;
+	prefs = [[NSUserDefaults alloc] initWithSuiteName:@"com.karimo299.dontkillmymusic"];
+	enabled = [prefs objectForKey:@"isEnabled"] ? [[prefs objectForKey:@"isEnabled"] boolValue] : YES;
 	easyFix = [prefs objectForKey:@"EasyFix"] ? [[prefs objectForKey:@"EasyFix"] boolValue] : NO;
 	appLock = [prefs objectForKey:@"AppLock"] ? [[prefs objectForKey:@"AppLock"] boolValue] : YES;
 	appList = NULL;
@@ -46,13 +46,12 @@ NSString *nowPlayingAppID;
 	%orig;
 	playing = [self isPlaying];
 	nowPlayingAppID = [[self nowPlayingApplication] bundleIdentifier];
-	if (playing && ![SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"DisabledApps" containBundleIdentifier:nowPlayingAppID] && nowPlayingAppID) {
-		NSLog(@"%@", nowPlayingAppID);
+	if (playing && ![[prefs valueForKey:[NSString stringWithFormat:@"DisabledApps-%@", nowPlayingAppID]] boolValue] && nowPlayingAppID) {
 		if (![appList containsObject:nowPlayingAppID]) {
 			[appList addObject:nowPlayingAppID];
 		}
 	} else {
-	[appList removeObject:nowPlayingAppID];	
+	[appList removeObject:nowPlayingAppID];
 	nowPlayingAppID = nil;
 	}
 }
@@ -82,7 +81,7 @@ NSString *nowPlayingAppID;
 	[appList removeObject:shouldKill];
 	if (nowPlayingAppID && ![appList containsObject:nowPlayingAppID] && ![shouldKill isEqual:nowPlayingAppID]) {
 	[appList addObject:nowPlayingAppID];
-	} else if (appLock && [SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"LockedApps" containBundleIdentifier:swipeAppId] && ![shouldKill isEqual:swipeAppId]) {
+	} else if (appLock && [[prefs valueForKey:[NSString stringWithFormat:@"LockedApps-%@", swipeAppId]] boolValue] && ![shouldKill isEqual:swipeAppId]) {
 			[appList addObject:swipeAppId];
 	}
 	%orig;
@@ -90,11 +89,13 @@ NSString *nowPlayingAppID;
 		lay = MSHookIvar <SBAppLayout*> (self,"_appLayout");
 		[lay getAppId];
 		if ([appList containsObject:swipeAppId]) {
-			MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize = CGSizeMake(MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize.width,0);
+			MSHookIvar <UIScrollView*> (self,"_verticalScrollView").scrollEnabled = NO;
 		}
 			// Support for SBCard by julioverne to prevent the home card to kill anything
 	 	else if (([swipeAppId isEqual:@"com.apple.springboard"] && playing) || ([swipeAppId isEqual:@"com.apple.springboard"] && appList.count)) {
 		MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize = CGSizeMake(MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize.width,0);
+		} else {
+			MSHookIvar <UIScrollView*> (self,"_verticalScrollView").scrollEnabled = YES;
 		}
 	}
 }
@@ -111,31 +112,30 @@ NSString *nowPlayingAppID;
 //This checks if app card is held down to lock/unlock the appswitcher card
 - (void)_handlePageViewTap:(id)arg1 {
 	if (appLock) {
-		if (MSHookIvar <UILongPressGestureRecognizer*>(self, "_enableKillAffordanceLongPressGestureRecognizer").state != 0) {
-			%orig;
-		} else {
+		if (MSHookIvar <UILongPressGestureRecognizer*>(self, "_selectionHighlightGestureRecognizer").state == 3) {
 			lay = MSHookIvar <SBAppLayout*> (self,"_appLayout");
 			[lay getAppId];
-			if (![appList containsObject:swipeAppId] && ![SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"DisabledApps" containBundleIdentifier:swipeAppId]) {
-				if ([SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"LockedApps" containBundleIdentifier:swipeAppId]|| [swipeAppId isEqual:nowPlayingAppID]) {
+			if (![appList containsObject:swipeAppId] && ![[prefs valueForKey:[NSString stringWithFormat:@"DisabledApps-%@", swipeAppId]] boolValue]) {
+				if ([[prefs valueForKey:[NSString stringWithFormat:@"LockedApps-%@", swipeAppId]] boolValue] || [swipeAppId isEqual:nowPlayingAppID]) {
 					shouldKill = nil;
 				}
 				[appList addObject:swipeAppId];
-			} else { 
-				if ([SparkAppList doesIdentifier:@"com.karimo299.dontkillmymusic" andKey:@"LockedApps" containBundleIdentifier:swipeAppId] || [swipeAppId isEqual:nowPlayingAppID]) {
+			} else {
+				if ([[prefs valueForKey:[NSString stringWithFormat:@"LockedApps-%@", swipeAppId]] boolValue] || [swipeAppId isEqual:nowPlayingAppID]) {
 					shouldKill = swipeAppId;
 				}
 				[appList removeObject:swipeAppId];
 			}
+		} else {
+			%orig;
 		}
 	} else {
 		%orig;
 	}
 	[self layoutSubviews];
-	NSLog(@"%@", shouldKill);
 }
-%end
 
+%end
 %ctor {
     CFNotificationCenterAddObserver(
 		CFNotificationCenterGetDarwinNotifyCenter(), NULL,

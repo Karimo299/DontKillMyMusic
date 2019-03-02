@@ -6,6 +6,4 @@
 - (void)tweetHaste;
 - (void)reddit;
 - (void)respring;
-- (void)selectLockedApps;
-- (void)selectDisabledApps;
 @end
