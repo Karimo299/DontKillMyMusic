@@ -45,21 +45,6 @@
 				<string>Enable Applock</string>
 			</dict>
 			<dict>
-				<key>cell</key>
-				<string>PSSwitchCell</string>
-				<key>default</key>
-				<false/>
-				<key>PostNotification</key>
-				<string>com.karimo299.dontkillmymusic/prefChanged</string>
-				<key>defaults</key>
-				<string>com.karimo299.dontkillmymusic</string>
-				<key>key</key>
-				<string>EasyFix</string>
-				<key>label</key>
-				<string>EasySwitcherX Fix</string>
-			</dict>
-
-			<dict>
 				<key>bundle</key>
 				<string>AppList</string>
 				<key>ALNavigationTitle</key>
@@ -130,16 +115,24 @@
 			<dict>
 				<key>big</key>
 				<true/>
-				<key>cellClass</key>
-				<string>HBTwitterCell</string>
 				<key>height</key>
 				<integer>56</integer>
+				<key>cellClass</key>
+				<string>HBTwitterCell</string>
 				<key>label</key>
 				<string>Karimo299</string>
 				<key>user</key>
 				<string>Karimo299</string>
-				<key>action</key>
-				<string>tweet</string>
+			</dict>
+			<dict>
+				<key>cellClass</key>
+				<string>HBLinkTableCell</string>
+				<key>label</key>
+				<string>Paypal</string>
+				<key>subtitle</key>
+				<string>Support My work!</string>
+				<key>url</key>
+				<string>http://paypal.me/Karimo299</string>
 			</dict>
 			<dict>
 				<key>cell</key>
@@ -158,26 +151,22 @@
 				<string>HasteDesigns</string>
 				<key>user</key>
 				<string>HasteDesigns</string>
-				<key>action</key>
-				<string>tweetHaste</string>
 			</dict>
 			<dict>
 				<key>cell</key>
 				<string>PSGroupCell</string>
 				<key>label</key>
-				<string>Source code</string>
-				<key>footerText</key>
-				<string>Thanks for downloading, enjoy :)</string>
+				<string></string>
 			</dict>
 			<dict>
-				<key>cell</key>
-				<string>PSButtonCell</string>
-				<key>icon</key>
-				<string>github.png</string>
+				<key>cellClass</key>
+				<string>HBLinkTableCell</string>
 				<key>label</key>
-				<string>Github</string>
-				<key>action</key>
-				<string>git</string>
+				<string>Source Code</string>
+				<key>subtitle</key>
+				<string>Check it out!</string>
+				<key>url</key>
+				<string>http://github.com/Karimo299/ControlPlz</string>
 			</dict>
 		</array>
 		<key>title</key>

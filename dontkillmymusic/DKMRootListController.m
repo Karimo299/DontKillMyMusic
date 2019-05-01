@@ -37,23 +37,6 @@ style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
 
 [self presentViewController:alert animated:YES completion:nil];
 }
-		//Github source code button
-	- (void) git {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://github.com/Karimo299/DontKillMyMusic"]];
-	}
-		//Twitter button
-	- (void) tweet {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://twitter.com/karimo299"]];
-	}
-
-	- (void) tweetHaste {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://twitter.com/hasteDesigns"]];
-	}
-
-		//Reddit button
-	- (void)reddit {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://reddit.com/user/Karimo299"]];
-	}
 
 	//Respring button
 - (IBAction)respring {

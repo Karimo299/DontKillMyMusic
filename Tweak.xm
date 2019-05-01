@@ -1,5 +1,7 @@
 //This imports whatever classes I need
 #import <UIKit/UIScrollView.h>
+#include <dlfcn.h>
+
 
 @class SBApplication, SBAppLayout, UILongPressGestureRecognizer, UIScrollView;
 
@@ -24,7 +26,6 @@ NSString *swipeAppId;
 NSString *shouldKill;
 BOOL playing = NO;
 BOOL enabled;
-BOOL easyFix;
 BOOL appLock;
 SBAppLayout *lay;
 
@@ -32,7 +33,6 @@ SBAppLayout *lay;
 static void loadPrefs() {
 	prefs = [[NSUserDefaults alloc] initWithSuiteName:@"com.karimo299.dontkillmymusic"];
 	enabled = [prefs objectForKey:@"isEnabled"] ? [[prefs objectForKey:@"isEnabled"] boolValue] : YES;
-	easyFix = [prefs objectForKey:@"EasyFix"] ? [[prefs objectForKey:@"EasyFix"] boolValue] : NO;
 	appLock = [prefs objectForKey:@"AppLock"] ? [[prefs objectForKey:@"AppLock"] boolValue] : YES;
 	appList = NULL;
 }
@@ -100,14 +100,14 @@ NSString *nowPlayingAppID;
 	}
 }
 
-// This disables swiping down so EasySwitcherX by sparkdev_ will not run if music is playing
-- (void)scrollViewDidScroll:(id)arg1 {
-	if ((easyFix && playing && MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentOffset.y < 0) || (easyFix && appList.count && MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentOffset.y < 0) ) {
-		MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize = CGSizeMake(MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize.width,0);
-	} else {
-		return %orig;
-	}
-}
+// // This disables swiping down so EasySwitcherX by sparkdev_ will not run if music is playing
+// - (void)scrollViewDidScroll:(id)arg1 {
+// 	%orig;
+// 	if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/EasySwitcherX.dylib"] && playing && MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentOffset.y < 0) {
+// 		// MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize = CGSizeMake(MSHookIvar <UIScrollView*> (self,"_verticalScrollView").contentSize.width,0);
+//
+// 	}
+// }
 
 //This checks if app card is held down to lock/unlock the appswitcher card
 - (void)_handlePageViewTap:(id)arg1 {
@@ -134,9 +134,19 @@ NSString *nowPlayingAppID;
 	}
 	[self layoutSubviews];
 }
-
 %end
+
+%hook SparkSwitcherMenu
+  -(void)requestKillAllApps {
+		if ([appList count] == 0) %orig;
+	}
+%end
+
 %ctor {
+	if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/EasySwitcherX.dylib"]) {
+		dlopen("/Library/MobileSubstrate/DynamicLibraries/EasySwitcherX.dylib", RTLD_LAZY);
+	}
+	%init;
     CFNotificationCenterAddObserver(
 		CFNotificationCenterGetDarwinNotifyCenter(), NULL,
 		(CFNotificationCallback)loadPrefs,
